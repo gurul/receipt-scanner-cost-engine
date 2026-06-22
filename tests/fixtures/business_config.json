@@ -1,0 +1,27 @@
+{
+  "business": {
+    "name": "Test Business",
+    "industry": "general",
+    "currency": "USD"
+  },
+  "items": {
+    "categories": ["General"],
+    "aliases": {}
+  },
+  "products": {
+    "unit_name": "unit",
+    "recipes": {}
+  },
+  "overhead": {
+    "monthly_production": 0,
+    "cost_categories": []
+  },
+  "pricing": {
+    "tiers": {}
+  },
+  "extraction": {
+    "prompt_context": "",
+    "item_term": "item",
+    "receipt_rules": []
+  }
+}

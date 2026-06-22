@@ -1,0 +1,41 @@
+name: Web CI
+
+on:
+  pull_request:
+    paths:
+      - "web/**"
+      - ".github/workflows/web-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "web/**"
+      - ".github/workflows/web-ci.yml"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    env:
+      BETTER_AUTH_SECRET: development-only-ci-secret-at-least-32-bytes
+      BETTER_AUTH_URL: http://localhost:3000
+      DATABASE_URL: postgresql://schema:only@localhost/shapersai
+      GOOGLE_CLIENT_ID: ci-placeholder
+      GOOGLE_CLIENT_SECRET: ci-placeholder
+      GOOGLE_CLOUD_KMS_KEY_NAME: projects/ci/locations/global/keyRings/test/cryptoKeys/test
+      GOOGLE_CLOUD_CREDENTIALS_JSON: '{"client_email":"ci@example.com","private_key":"placeholder"}'
+      SHORTCUT_TOKEN_PEPPER: ci-only-pepper-at-least-32-characters
+      DATA_BACKUP_RETENTION_DAYS: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build

@@ -1,0 +1,3 @@
+ALTER TABLE "scan_job" ADD COLUMN "shortcut_token_id" text;--> statement-breakpoint
+ALTER TABLE "scan_job" ADD CONSTRAINT "scan_job_shortcut_token_id_shortcut_token_id_fk" FOREIGN KEY ("shortcut_token_id") REFERENCES "public"."shortcut_token"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
+CREATE INDEX "scan_job_shortcut_created_idx" ON "scan_job" USING btree ("shortcut_token_id","created_at");

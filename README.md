@@ -1,5 +1,7 @@
 # Receipt Scanner — Small Business Cost Intelligence
 
+> **Web migration:** The production Next.js/Vercel application now lives in [`web/`](web/README.md). It adds Google accounts, user-owned Drive storage, BYOK Anthropic credentials, graphical onboarding, receipt review, revocable iPhone credentials, migrations, CI, and deployment/runbook documentation. The Python Cloud Function below remains intact as the parity reference during cutover.
+
 AI-powered receipt scanning pipeline for small businesses. Extracts purchases from receipt photos using Claude Vision, maps them to canonical item names, writes to a Google Sheets database, and auto-updates product costs and margins.
 
 Configurable for any industry — no code changes needed.
